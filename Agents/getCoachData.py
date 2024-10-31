@@ -14,7 +14,7 @@ def transform_coaching_position(position):
 def get_parameter_value(parameters, param_name):
     """Helper function to get parameter value by name"""
     for param in parameters:
-        if param.get('name') == param_name:
+        if param.get('name').lower() == param_name.lower():
             return param.get('value')
     return None
 
@@ -61,7 +61,7 @@ def lambda_handler(event, context):
         # Extract parameters using the helper function
         year = get_parameter_value(parameters, 'year')
         position = get_parameter_value(parameters, 'position')
-        team = get_parameter_value(parameters, 'team')
+        team = get_parameter_value(parameters, 'TeamName')
 
         # Validate parameters
         if not all([year, position, team]):
